@@ -17,9 +17,3 @@ var quastions = [
     ],
   },
 ];
-
-// class to be applied on the choises btn:
-
-// .choices button {
-//   display: block;
-// }
