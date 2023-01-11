@@ -1,4 +1,4 @@
-var startScreen = document.querySelector(".strart");
+var startScreen = document.querySelector("#start-screen");
 var startBtn = document.querySelector("#start");
 var quastionsDiv = document.querySelector("#questions");
 var quastTitle = document.querySelector("#question-title");
@@ -6,7 +6,7 @@ var choices = document.querySelector(".choices");
 var timerEl = document.querySelector("#time");
 var newTime = 60;
 
-// set timer function
+// timer function
 function timer() {
   var intervalTimer = setInterval(function () {
     newTime--;
@@ -16,13 +16,22 @@ function timer() {
     }
   }, 1000);
 }
-timer();
+
+// function to show quastion
+function showQuastioin() {
+  quastTitle.innerHTML = quastions[0].quastion;
+  quastions[0].answers.forEach(function (answer) {
+    var button = document.createElement("button");
+    button.textContent = answer.text;
+    console.log(button);
+    choices.appendChild(button);
+  });
+}
+
+// event listiner
 startBtn.addEventListener("click", function () {
-  // new time 60;
-  // use timer function to count down newTime--
-  // add class hiden to start page
-  // remove hide class from quiz
+  timer();
+  startScreen.setAttribute("class", "hide");
+  quastionsDiv.removeAttribute("class");
+  showQuastioin();
 });
-// quastionsDiv.removeAttribute("class");
-// var attr = quastionsDiv.getAttribute("class");
-// quastionsDiv.textContent = "labas";
