@@ -8,6 +8,10 @@ var endScreen = document.querySelector("#end-screen");
 var finalScore = document.querySelector("#final-score");
 var initialsEl = document.querySelector("#initials");
 var submitBtn = document.querySelector("#submit");
+var orderedLiEl = document.querySelector("#highscores");
+var cleareBtn = document.querySelector("#clear");
+var link = document.querySelector(".scores").firstChild;
+
 var newTime = 80;
 var quastionNumber = 0;
 var questionsLeft = quastions.length;
@@ -98,10 +102,13 @@ startBtn.addEventListener("click", function () {
 });
 
 // Submit button event listiner
+
 submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
   score = finalScore.innerHTML;
   console.log(score);
   initials = initialsEl.value;
   console.log(initials);
+
+  link.click();
 });
