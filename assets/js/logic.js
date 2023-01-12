@@ -4,11 +4,18 @@ var quastionsDiv = document.querySelector("#questions");
 var quastTitle = document.querySelector("#question-title");
 var choices = document.querySelector(".choices");
 var timerEl = document.querySelector("#time");
+var endScreen = document.querySelector("#end-screen");
+var finalScore = document.querySelector("#final-score");
+var initialsEl = document.querySelector("#initials");
+var submitBtn = document.querySelector("#submit");
 var newTime = 80;
 var quastionNumber = 0;
 var length = quastions.length;
+var wrong = 0;
+var correct = 0;
+var score = 0;
 
-// timer function
+// Timer function
 function timer() {
   var intervalTimer = setInterval(function () {
     newTime--;
@@ -19,19 +26,15 @@ function timer() {
   }, 1000);
 }
 
-// remove previous quastions
+// Remove previous quastions
 function removeQuestions() {
   choices.innerHTML = "";
 }
 
-// function to show quastion
+// Function to show quastion
 function showQuastioin() {
   if (newTime <= 0) {
-    quastTitle.innerHTML = "";
-    removeQuestions();
-    console.log("STOOOOOP");
-    console.log(newTime);
-    return;
+    endOfGame();
   }
   quastTitle.innerHTML = quastions[quastionNumber].quastion;
   quastions[quastionNumber].answers.forEach(function (answer) {
@@ -40,7 +43,8 @@ function showQuastioin() {
     choices.appendChild(button);
   });
 }
-// trying create function GAME
+
+// Function to play game
 function playGame() {
   choices.addEventListener("click", function (e) {
     var element = e.target;
@@ -53,22 +57,19 @@ function playGame() {
       if (answerIs === true) {
         removeQuestions();
         console.log("win");
+        correct++;
         quastionNumber++;
         length--;
         if (length > 0) {
           console.log(length);
           showQuastioin();
         } else {
-          console.log("END");
-          quastTitle.innerHTML = "";
-          removeQuestions();
-          console.log("STOOOOOP");
-          console.log(newTime);
-          newTime = 0;
+          endOfGame();
         }
       } else if (answerIs === false) {
         removeQuestions();
         console.log("lost");
+        wrong++;
         newTime = newTime - 10;
         quastionNumber++;
         length--;
@@ -76,17 +77,19 @@ function playGame() {
           console.log(length);
           showQuastioin();
         } else {
-          console.log("END");
-          quastTitle.innerHTML = "";
-          removeQuestions();
-          console.log("STOOOOOP");
-          console.log(newTime);
-
-          newTime = 0;
+          endOfGame();
         }
       }
     }
   });
+}
+// function when the game is finished
+function endOfGame() {
+  quastionsDiv.setAttribute("class", "hide");
+  endScreen.removeAttribute("class");
+  score = newTime;
+  finalScore.textContent = score;
+  newTime = 1;
 }
 
 // event listiner
@@ -94,18 +97,6 @@ startBtn.addEventListener("click", function () {
   timer();
   startScreen.setAttribute("class", "hide");
   quastionsDiv.removeAttribute("class");
-
   showQuastioin();
   playGame();
 });
-// GIVEN I am taking a code quiz (✓)
-// WHEN I click the start button (✓)
-// THEN a timer starts and I am presented with a question (✓)
-// WHEN I answer a question(✓)
-// THEN I am presented with another question (✓)
-// WHEN I answer a question incorrectly(✓)
-// THEN time is subtracted from the clock(✓)
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and score
