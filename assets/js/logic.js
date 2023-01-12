@@ -10,10 +10,11 @@ var initialsEl = document.querySelector("#initials");
 var submitBtn = document.querySelector("#submit");
 var newTime = 80;
 var quastionNumber = 0;
-var length = quastions.length;
+var questionsLeft = quastions.length;
 var wrong = 0;
 var correct = 0;
 var score = 0;
+var initials = "";
 
 // Timer function
 function timer() {
@@ -56,25 +57,21 @@ function playGame() {
       }
       if (answerIs === true) {
         removeQuestions();
-        console.log("win");
         correct++;
         quastionNumber++;
-        length--;
-        if (length > 0) {
-          console.log(length);
+        questionsLeft--;
+        if (questionsLeft > 0) {
           showQuastioin();
         } else {
           endOfGame();
         }
       } else if (answerIs === false) {
         removeQuestions();
-        console.log("lost");
         wrong++;
         newTime = newTime - 10;
         quastionNumber++;
-        length--;
-        if (length > 0) {
-          console.log(length);
+        questionsLeft--;
+        if (questionsLeft > 0) {
           showQuastioin();
         } else {
           endOfGame();
@@ -83,20 +80,28 @@ function playGame() {
     }
   });
 }
-// function when the game is finished
+// Function to show end screen when the game is finished
 function endOfGame() {
   quastionsDiv.setAttribute("class", "hide");
   endScreen.removeAttribute("class");
-  score = newTime;
-  finalScore.textContent = score;
+  finalScore.innerHTML = newTime;
   newTime = 1;
 }
 
-// event listiner
+// Start button event listiner
 startBtn.addEventListener("click", function () {
   timer();
   startScreen.setAttribute("class", "hide");
   quastionsDiv.removeAttribute("class");
   showQuastioin();
   playGame();
+});
+
+// Submit button event listiner
+submitBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  score = finalScore.innerHTML;
+  console.log(score);
+  initials = initialsEl.value;
+  console.log(initials);
 });
