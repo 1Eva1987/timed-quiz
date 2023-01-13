@@ -126,14 +126,19 @@ function getIt() {
 }
 
 // Submit button event listiner
+
 submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
+
   var score = finalScore.innerHTML;
   var initials = initialsEl.value;
   var arrEl = initials + " - " + score;
-  arrOfscores.push(arrEl);
-  storeScores();
-  link.click();
+  console.log(arrEl.length);
+  if (initials.length > 0 && initials.length < 3) {
+    arrOfscores.push(arrEl);
+    storeScores();
+    link.click();
+  } else alert("To save your score ,please enter your initials.\nMaximum 3 simbols!");
 });
 
 getIt();
