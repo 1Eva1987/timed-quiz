@@ -15,8 +15,8 @@ var quastionNumber = 0;
 var questionsLeft = quastions.length;
 var wrong = 0;
 var correct = 0;
-var score = 0;
-var initials = "";
+
+var arrOfscores = [];
 
 // Timer function
 function timer() {
@@ -99,14 +99,23 @@ startBtn.addEventListener("click", function () {
   showQuastioin();
   playGame();
 });
-
+// function to store scores
+function storeScores() {
+  localStorage.setItem("Scores", JSON.stringify(arrOfscores));
+}
 // Submit button event listiner
-
 submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  score = finalScore.innerHTML;
-  initials = initialsEl.value;
-  localStorage.setItem("Score", score);
-  localStorage.setItem("Initials", initials);
+  var score = finalScore.innerHTML;
+  var initials = initialsEl.value;
+  var arrEl = initials + " - " + score;
+  arrOfscores.push(arrEl);
+  storeScores();
   link.click();
 });
+//
+function getIt() {
+  var storedScores = JSON.parse(localStorage.getItem("Scores"));
+  arrOfscores = storedScores;
+}
+getIt();
