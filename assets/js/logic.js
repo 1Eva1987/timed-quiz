@@ -16,8 +16,6 @@ var questionsLeft = quastions.length;
 var wrong = 0;
 var correct = 0;
 
-var arrOfscores = [];
-
 // Timer function
 function timer() {
   var intervalTimer = setInterval(function () {
@@ -103,7 +101,12 @@ startBtn.addEventListener("click", function () {
 function storeScores() {
   localStorage.setItem("Scores", JSON.stringify(arrOfscores));
 }
+// function to get values from local storage and update existing ones
+
 // Submit button event listiner
+
+var arrOfscores = [];
+
 submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
   var score = finalScore.innerHTML;
@@ -113,9 +116,11 @@ submitBtn.addEventListener("click", function (e) {
   storeScores();
   link.click();
 });
-//
 function getIt() {
   var storedScores = JSON.parse(localStorage.getItem("Scores"));
-  arrOfscores = storedScores;
+  if (storedScores) {
+    arrOfscores = storedScores;
+  }
 }
 getIt();
+console.log(arrOfscores);
