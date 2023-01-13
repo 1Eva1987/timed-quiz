@@ -47,6 +47,17 @@ function showQuastioin() {
     choices.appendChild(button);
   });
 }
+// functions to play sounds
+function playCorrect() {
+  var sound = document.createElement("audio");
+  sound.setAttribute("src", "./assets/sfx/correct.wav");
+  sound.play();
+}
+function playWrong() {
+  var sound = document.createElement("audio");
+  sound.setAttribute("src", "./assets/sfx/incorrect.wav");
+  sound.play();
+}
 
 // Function to play game
 function playGame() {
@@ -60,6 +71,7 @@ function playGame() {
       }
       if (answerIs === true) {
         removeQuestions();
+        playCorrect();
         correct++;
         quastionNumber++;
         questionsLeft--;
@@ -70,6 +82,7 @@ function playGame() {
         }
       } else if (answerIs === false) {
         removeQuestions();
+        playWrong();
         wrong++;
         newTime = newTime - 10;
         quastionNumber++;
