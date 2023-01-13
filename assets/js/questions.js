@@ -33,8 +33,8 @@ var quastions = [
     answers: [
       { text: "1. numbers and strings", correct: false },
       { text: "2. other arrays", correct: false },
-      { text: "3. booleans", correct: true },
-      { text: "4. all of the above", correct: false },
+      { text: "3. booleans", correct: false },
+      { text: "4. all of the above", correct: true },
     ],
   },
   {
