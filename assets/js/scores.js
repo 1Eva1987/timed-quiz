@@ -10,3 +10,9 @@ for (var i = 0; i < arrOfscores.length; i++) {
   liEl.textContent = arrOfscores[i];
   orderedLiEl.appendChild(liEl);
 }
+
+// event to cleare highscores
+cleareBtn.addEventListener("click", function () {
+  orderedLiEl.remove();
+  localStorage.clear();
+});
