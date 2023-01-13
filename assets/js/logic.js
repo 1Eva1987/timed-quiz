@@ -8,8 +8,6 @@ var endScreen = document.querySelector("#end-screen");
 var finalScore = document.querySelector("#final-score");
 var initialsEl = document.querySelector("#initials");
 var submitBtn = document.querySelector("#submit");
-var orderedLiEl = document.querySelector("#highscores");
-var cleareBtn = document.querySelector("#clear");
 var link = document.querySelector(".scores").firstChild;
 
 var newTime = 80;
@@ -40,6 +38,7 @@ function removeQuestions() {
 function showQuastioin() {
   if (newTime <= 0) {
     endOfGame();
+    return;
   }
   quastTitle.innerHTML = quastions[quastionNumber].quastion;
   quastions[quastionNumber].answers.forEach(function (answer) {
@@ -106,9 +105,8 @@ startBtn.addEventListener("click", function () {
 submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
   score = finalScore.innerHTML;
-  console.log(score);
   initials = initialsEl.value;
-  console.log(initials);
-
+  localStorage.setItem("Score", score);
+  localStorage.setItem("Initials", initials);
   link.click();
 });
