@@ -1,6 +1,6 @@
-var quastions = [
+var questions = [
   {
-    quastion:
+    question:
       "String values has to be enclosed within _______ when being assigned to variables. ",
     answers: [
       { text: "1. commas", correct: false },
@@ -10,7 +10,7 @@ var quastions = [
     ],
   },
   {
-    quastion: "Commonly used data types DO Not Include:",
+    question: "Commonly used data types DO Not Include:",
     answers: [
       { text: "1. strings", correct: false },
       { text: "2. booleans", correct: false },
@@ -19,7 +19,7 @@ var quastions = [
     ],
   },
   {
-    quastion:
+    question:
       "The condition in an if / else statement is enclosed with_________.",
     answers: [
       { text: "1. quates", correct: false },
@@ -29,7 +29,7 @@ var quastions = [
     ],
   },
   {
-    quastion: "Arrays in JS can be used to store __________.",
+    question: "Arrays in JS can be used to store __________.",
     answers: [
       { text: "1. numbers and strings", correct: false },
       { text: "2. other arrays", correct: false },
@@ -38,7 +38,7 @@ var quastions = [
     ],
   },
   {
-    quastion:
+    question:
       "A very useful tool used during development and debugging for printing content to the debugger is :",
     answers: [
       { text: "1. JavaScript", correct: false },
